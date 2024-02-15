@@ -1,8 +1,8 @@
-import { Address } from '../@models/address';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
+
 @Entity()
-export class AddressEntity implements Address {
+export class AddressEntity {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()

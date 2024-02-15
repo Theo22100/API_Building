@@ -2,39 +2,45 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ApartmentEntity } from './@entity/apartmentEntity';
+import { ApartmentOptionEntity } from './@entity/apartmentOptionEntity';
+import { BuildingEntity } from './@entity/buildingEntity';
+import { CommonFacilityEntity } from './@entity/commonFacilityEntity';
+import { OwnerEntity } from './@entity/ownerEntity';
+import { TenantEntity } from './@entity/tenantEntity';
+import { BuildingController } from './building/building.controller';
+import { BuildingService } from './building/building.service';
+import { OwnerController } from './owner/owner.controller';
+import { OwnerService } from './owner/owner.service';
+import { AddressController } from './address/address.controller';
+import { AddressService } from './address/address.service';
 
 @Module({
   imports: [
-    // TypeOrmModule.forRoot({
-    //   type: 'mssql',
-    //   host: 'SURFACE-DAVID\\SQLEXPRESS',
-    //   port: 1433,
-    //   username: 'sa',
-    //   password: '123456pw$',
-    //   database: 'DivingClubs',
-    //   options: {
-    //     trustServerCertificate: true,
-    //     useUTC: true,
-    //   },
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
       port: 3306,
       username: 'root',
       password: 'O)B5&nE6F',
-      database: 'divingclubs',
-      options: {
-        trustServerCertificate: true,
-        useUTC: true,
-      },
+      database: 'api_building',
       entities: [
-        AddressEntity,
+        ApartmentEntity,
+        ApartmentOptionEntity,
+        BuildingEntity,
+        CommonFacilityEntity,
+        OwnerEntity,
+        TenantEntity,
       ],
-      synchronize: false,
+      synchronize: true,
     }),
-    AddressesModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [
+    AppController,
+    AddressController,
+    BuildingController,
+    OwnerController,
+  ],
+  providers: [AppService, AddressService, BuildingService, OwnerService],
 })
 export class AppModule {}
