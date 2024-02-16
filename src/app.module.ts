@@ -41,7 +41,6 @@ import { TenantEntity } from './@entity/TenantEntity';
         PersonEntity,
         RentEntity,
         TenantEntity,
-
       ],
       synchronize: true,
     }),
