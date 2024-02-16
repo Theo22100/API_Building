@@ -12,8 +12,9 @@ import { PersonEntity } from './@entity/PersonEntity';
 import { RentEntity } from './@entity/RentEntity';
 import { TenantEntity } from './@entity/TenantEntity';
 import { PersonController } from './person/person.controller';
-import { PersonService } from './person/person.service';
 import { PersonModule } from './person/person.module';
+import { AppService } from './app.service';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -41,7 +42,7 @@ import { PersonModule } from './person/person.module';
     }),
     PersonModule,
   ],
-  controllers: [PersonController],
-  providers: [PersonService],
+  controllers: [PersonController, AppController],
+  providers: [AppService],
 })
 export class AppModule {}

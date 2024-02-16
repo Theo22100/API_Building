@@ -1,46 +1,33 @@
 import {
   Controller,
   Get,
-  Post,
-  Body,
+  HttpStatus,
+  NotFoundException,
   Param,
-  Delete,
-  Put,
+  ParseIntPipe,
+  Res,
 } from '@nestjs/common';
+
+import { ApiTags } from '@nestjs/swagger';
 import { PersonService } from './person.service';
-import { CreatePersonDto } from 'src/@dto/create-person.dto';
-import { PersonEntity } from 'src/@entity/PersonEntity';
-import { UpdatePersonDto } from 'src/@dto/update-person.dto';
 
-@Controller('persons')
+@ApiTags('person')
+@Controller('person')
 export class PersonController {
-  constructor(private readonly personService: PersonService) {}
+  constructor(private readonly service: PersonService) {}
 
-  @Post()
-  create(@Body() createPersonDto: CreatePersonDto): Promise<PersonEntity> {
-    return this.personService.create(createPersonDto);
+  @Get('/')
+  async getPersons(@Res() res) {
+    const result = await this.service.getPersons();
+    return res.status(HttpStatus.OK).json(result);
   }
 
-  @Get()
-  findAll(): Promise<PersonEntity[]> {
-    return this.personService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string): Promise<PersonEntity> {
-    return this.personService.findOne(+id);
-  }
-
-  @Put(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updatePersonDto: UpdatePersonDto,
-  ): Promise<PersonEntity> {
-    return this.personService.update(+id, updatePersonDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string): Promise<void> {
-    return this.personService.remove(+id);
+  @Get('/:id')
+  async getPerson(@Res() res, @Param('id', ParseIntPipe) id: number) {
+    const result = await this.service.getPerson(id);
+    if (!result) {
+      throw new NotFoundException('Person does not exist!');
+    }
+    return res.status(HttpStatus.OK).json(result);
   }
 }
