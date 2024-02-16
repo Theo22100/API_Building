@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { PersonEntity } from 'src/@entity/PersonEntity';
 import { PersonDto } from 'src/@dto/person-dto';
+import { Person } from 'src/@model/person-dto';
 
 @Injectable()
 export class PersonService {
@@ -19,8 +20,10 @@ export class PersonService {
     return this.repository.findOneBy({ id });
   }
 
-  async deletePerson(id: number): Promise<void> {
+  async deletePerson(id: number): Promise<Person> {
+    const result = await this.getPerson(id);
     await this.repository.delete(id);
+    return result;
   }
 
   async createPerson(personDto: PersonDto): Promise<PersonEntity> {

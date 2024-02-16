@@ -14,6 +14,7 @@ import { TenantEntity } from './@entity/TenantEntity';
 import { PersonModule } from './person/person.module';
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
+import { AddressModule } from './address/address.module';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { AppController } from './app.controller';
       synchronize: true,
     }),
     PersonModule,
+    AddressModule,
   ],
   controllers: [AppController],
   providers: [AppService],
