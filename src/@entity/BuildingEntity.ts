@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+  OneToMany,
+} from 'typeorm';
 import { BuildingCommonEquipmentEntity } from './BuildingCommonEquipmentEntity';
 import { ApartmentEntity } from './ApartmentEntity';
 import { AddressEntity } from './AdressEntity';
@@ -11,7 +18,8 @@ export class BuildingEntity {
   @Column()
   name: string;
 
-  @OneToMany(() => AddressEntity, (address) => address.building)
+  @OneToOne(() => AddressEntity)
+  @JoinColumn()
   address: AddressEntity;
 
   @OneToMany(

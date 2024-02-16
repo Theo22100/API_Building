@@ -12,7 +12,7 @@ export class PersonEntity {
   @Column()
   firstName: string;
 
-  @Column()
+  @Column({ default: false })
   isVatRegistered: boolean;
 
   @OneToMany(() => ApartmentEntity, (apartment) => apartment.owner)

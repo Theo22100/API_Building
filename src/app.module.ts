@@ -1,13 +1,5 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { BuildingController } from './building/building.controller';
-import { BuildingService } from './building/building.service';
-import { OwnerController } from './owner/owner.controller';
-import { OwnerService } from './owner/owner.service';
-import { AddressController } from './address/address.controller';
-import { AddressService } from './address/address.service';
 import { AddressEntity } from './@entity/AdressEntity';
 import { ApartmentEntity } from './@entity/ApartmentEntity';
 import { ApartmentOptionEntity } from './@entity/ApartmentOptionEntity';
@@ -19,6 +11,9 @@ import { OwnerEntity } from './@entity/OwnerEntity';
 import { PersonEntity } from './@entity/PersonEntity';
 import { RentEntity } from './@entity/RentEntity';
 import { TenantEntity } from './@entity/TenantEntity';
+import { PersonController } from './person/person.controller';
+import { PersonService } from './person/person.service';
+import { PersonModule } from './person/person.module';
 
 @Module({
   imports: [
@@ -44,13 +39,9 @@ import { TenantEntity } from './@entity/TenantEntity';
       ],
       synchronize: true,
     }),
+    PersonModule,
   ],
-  controllers: [
-    AppController,
-    AddressController,
-    BuildingController,
-    OwnerController,
-  ],
-  providers: [AppService, AddressService, BuildingService, OwnerService],
+  controllers: [PersonController],
+  providers: [PersonService],
 })
 export class AppModule {}
