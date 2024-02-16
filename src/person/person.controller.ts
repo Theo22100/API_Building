@@ -1,15 +1,18 @@
 import {
+  Body,
   Controller,
   Get,
   HttpStatus,
   NotFoundException,
   Param,
   ParseIntPipe,
+  Post,
   Res,
 } from '@nestjs/common';
 
 import { ApiTags } from '@nestjs/swagger';
 import { PersonService } from './person.service';
+import { PersonDto } from 'src/@dto/person-dto';
 
 @ApiTags('person')
 @Controller('person')
@@ -29,5 +32,11 @@ export class PersonController {
       throw new NotFoundException('Person does not exist!');
     }
     return res.status(HttpStatus.OK).json(result);
+  }
+
+  @Post('/')
+  async createPerson(@Res() res, @Body() personDto: PersonDto) {
+    const result = await this.service.createPerson(personDto);
+    return res.status(HttpStatus.CREATED).json(result);
   }
 }

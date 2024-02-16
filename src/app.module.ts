@@ -11,7 +11,6 @@ import { OwnerEntity } from './@entity/OwnerEntity';
 import { PersonEntity } from './@entity/PersonEntity';
 import { RentEntity } from './@entity/RentEntity';
 import { TenantEntity } from './@entity/TenantEntity';
-import { PersonController } from './person/person.controller';
 import { PersonModule } from './person/person.module';
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
@@ -42,7 +41,7 @@ import { AppController } from './app.controller';
     }),
     PersonModule,
   ],
-  controllers: [PersonController, AppController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
