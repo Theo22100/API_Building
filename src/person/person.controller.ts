@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpStatus,
   NotFoundException,
@@ -38,5 +39,17 @@ export class PersonController {
   async createPerson(@Res() res, @Body() personDto: PersonDto) {
     const result = await this.service.createPerson(personDto);
     return res.status(HttpStatus.CREATED).json(result);
+  }
+
+  @Delete('/:id')
+  async deleteTodo(@Res() res, @Param('id', ParseIntPipe) id: number) {
+    const deletedItem = await this.service.deletePerson(id);
+    if (!deletedItem) {
+      throw new NotFoundException('Person does not exist!');
+    }
+    return res.status(HttpStatus.OK).json({
+      message: 'Person has been deleted!',
+      todo: deletedItem,
+    });
   }
 }
