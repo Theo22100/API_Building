@@ -2,19 +2,22 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { ApartmentEntity } from './ApartmentEntity';
 
 @Entity()
-export class OwnerEntity {
+export class PersonEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  accountNumber: string;
+  lastName: string;
 
   @Column()
-  isVatRegistered: boolean;
+  firstName: string;
+
+  @Column()
+  isVatRegistered: boolean; 
 
   @OneToMany(() => ApartmentEntity, (apartment) => apartment.owner)
   ownedApartments: ApartmentEntity[];
 
-  @Column()
-  personId: number; 
+  @OneToMany(() => ApartmentEntity, (apartment) => apartment.tenants)
+  rentedApartments: ApartmentEntity[];
 }
