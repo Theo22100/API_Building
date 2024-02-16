@@ -23,5 +23,5 @@ export class TenantEntity {
   rents: RentEntity[];
 
   @Column()
-  personId: number; 
+  personId: number;
 }

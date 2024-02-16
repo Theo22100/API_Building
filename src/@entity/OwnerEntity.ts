@@ -16,5 +16,5 @@ export class OwnerEntity {
   ownedApartments: ApartmentEntity[];
 
   @Column()
-  personId: number; 
+  personId: number;
 }
