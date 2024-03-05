@@ -4,7 +4,7 @@ import { BuildingController } from './building.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BuildingEntity } from '../@entity/building.entity';
 import { AddressModule } from 'src/address/address.module';
-import { BuildingFacilityModule } from 'src/building_facility/building-facility.module';
+import { BuildingFacilityModule } from 'src/building-facility/building-facility.module';
 import { CommonFacilityModule } from 'src/common-facility/common-facility.module';
 import { ApartmentModule } from 'src/apartment/apartment.module';
 

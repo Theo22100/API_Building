@@ -12,7 +12,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
 import { AddressService } from 'src/address/address.service';
 import { CommonFacilityService } from 'src/common-facility/common-facility.service';
-import { BuildingFacilityService } from 'src/building_facility/building-facility.service';
+import { BuildingFacilityService } from 'src/building-facility/building-facility.service';
 import { BuildingFacilityEntity } from 'src/@entity/building-facility.entity';
 import { AddressEntity } from 'src/@entity/address.entity';
 import { AddFacilityDto } from './dto/add-facilities.dto';
