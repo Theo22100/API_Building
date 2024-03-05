@@ -1,33 +1,52 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { CreatePersonDto } from './dto/create-person.dto';
+import { UpdatePersonDto } from './dto/update-person.dto';
+import { PersonEntity } from '../@entity/person.entity';
+import { BaseService } from 'src/@core/base-service';
+import { DataSource, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { PersonEntity } from 'src/@entity/PersonEntity';
-import { PersonDto } from 'src/@dto/person-dto';
-import { Person } from 'src/@model/person-dto';
 
 @Injectable()
-export class PersonService {
+export class PersonService extends BaseService<PersonEntity> {
   constructor(
     @InjectRepository(PersonEntity)
     protected readonly repository: Repository<PersonEntity>,
-  ) {}
+    protected readonly dataSource: DataSource,
+  ) {
+    super(dataSource);
+  }
 
-  getPersons(): Promise<PersonEntity[]> {
+  async create(createPersonDto: CreatePersonDto): Promise<PersonEntity> {
+    const person = new PersonEntity();
+    Object.assign(person, createPersonDto);
+    return await this.saveEntities(person)?.[0];
+  }
+
+  findAll(): Promise<PersonEntity[]> {
     return this.repository.find();
   }
 
-  async getPerson(id: number): Promise<PersonEntity> {
+  findOne(id: number): Promise<PersonEntity> {
     return this.repository.findOneBy({ id });
   }
 
-  async deletePerson(id: number): Promise<Person> {
-    const result = await this.getPerson(id);
-    await this.repository.delete(id);
-    return result;
+  async update(
+    id: number,
+    updatePersonDto: UpdatePersonDto,
+  ): Promise<PersonEntity> {
+    const person: PersonEntity = await this.repository.findOne({
+      where: { id },
+    });
+    if (!person) {
+      throw new NotFoundException('Person not found');
+    }
+    Object.assign(person, updatePersonDto);
+    return await this.repository.save(person);
   }
 
-  async createPerson(personDto: PersonDto): Promise<PersonEntity> {
-    const newPerson = this.repository.create(personDto);
-    return this.repository.save(newPerson);
+  async remove(id: number) {
+    const result = await this.findOne(id);
+    await this.repository.delete(id);
+    return result;
   }
 }

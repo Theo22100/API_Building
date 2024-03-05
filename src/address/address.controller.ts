@@ -1,55 +1,49 @@
 import {
-  Body,
   Controller,
-  Delete,
   Get,
-  HttpStatus,
-  NotFoundException,
-  Param,
-  ParseIntPipe,
   Post,
-  Res,
+  Body,
+  Patch,
+  Param,
+  Delete,
 } from '@nestjs/common';
-
-import { ApiTags } from '@nestjs/swagger';
 import { AddressService } from './address.service';
-import { AddressDto } from 'src/@dto/address-dto';
+import { CreateAddressDto } from './dto/create-address.dto';
+import { UpdateAddressDto } from './dto/update-address.dto';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('address')
 @Controller('address')
 export class AddressController {
-  constructor(private readonly service: AddressService) {}
+  constructor(private readonly addressService: AddressService) {}
 
-  @Get('/')
-  async getAddress(@Res() res) {
-    const result = await this.service.getAddress();
-    return res.status(HttpStatus.OK).json(result);
+  @Get()
+  @ApiOperation({ summary: 'Get all addresses' })
+  findAll() {
+    return this.addressService.findAll();
   }
 
-  @Get('/:id')
-  async getAddressId(@Res() res, @Param('id', ParseIntPipe) id: number) {
-    const result = await this.service.getAddressId(id);
-    if (!result) {
-      throw new NotFoundException('Address does not exist!');
-    }
-    return res.status(HttpStatus.OK).json(result);
+  @Post()
+  @ApiOperation({ summary: 'Create an address' })
+  create(@Body() createAddressDto: CreateAddressDto) {
+    return this.addressService.create(createAddressDto);
   }
 
-  @Post('/')
-  async createAddress(@Res() res, @Body() addressDto: AddressDto) {
-    const result = await this.service.createAddress(addressDto);
-    return res.status(HttpStatus.CREATED).json(result);
+  @Delete(':id')
+  @ApiOperation({ summary: 'Delete address' })
+  remove(@Param('id') id: string) {
+    return this.addressService.deleteAddress(+id);
   }
 
-  @Delete('/:id')
-  async deleteTodo(@Res() res, @Param('id', ParseIntPipe) id: number) {
-    const deletedItem = await this.service.deleteAddress(id);
-    if (!deletedItem) {
-      throw new NotFoundException('Address does not exist!');
-    }
-    return res.status(HttpStatus.OK).json({
-      message: 'Address has been deleted!',
-      todo: deletedItem,
-    });
+  @Get(':id')
+  @ApiOperation({ summary: 'Get one address' })
+  findOne(@Param('id') id: string) {
+    return this.addressService.findOne(+id);
+  }
+
+  @Patch(':id')
+  @ApiOperation({ summary: 'Update address' })
+  update(@Param('id') id: string, @Body() updateAddressDto: UpdateAddressDto) {
+    return this.addressService.update(+id, updateAddressDto);
   }
 }

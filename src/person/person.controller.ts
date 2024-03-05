@@ -1,55 +1,49 @@
 import {
-  Body,
   Controller,
-  Delete,
   Get,
-  HttpStatus,
-  NotFoundException,
-  Param,
-  ParseIntPipe,
   Post,
-  Res,
+  Body,
+  Patch,
+  Param,
+  Delete,
 } from '@nestjs/common';
-
-import { ApiTags } from '@nestjs/swagger';
 import { PersonService } from './person.service';
-import { PersonDto } from 'src/@dto/person-dto';
+import { CreatePersonDto } from './dto/create-person.dto';
+import { UpdatePersonDto } from './dto/update-person.dto';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
-@ApiTags('person')
+@ApiTags('Persons')
 @Controller('person')
 export class PersonController {
-  constructor(private readonly service: PersonService) {}
+  constructor(private readonly personService: PersonService) {}
 
-  @Get('/')
-  async getPersons(@Res() res) {
-    const result = await this.service.getPersons();
-    return res.status(HttpStatus.OK).json(result);
+  @Post()
+  @ApiOperation({ summary: 'Create a person' })
+  create(@Body() createPersonDto: CreatePersonDto) {
+    return this.personService.create(createPersonDto);
   }
 
-  @Get('/:id')
-  async getPerson(@Res() res, @Param('id', ParseIntPipe) id: number) {
-    const result = await this.service.getPerson(id);
-    if (!result) {
-      throw new NotFoundException('Person does not exist!');
-    }
-    return res.status(HttpStatus.OK).json(result);
+  @Get()
+  @ApiOperation({ summary: 'Get all persons' })
+  findAll() {
+    return this.personService.findAll();
   }
 
-  @Post('/')
-  async createPerson(@Res() res, @Body() personDto: PersonDto) {
-    const result = await this.service.createPerson(personDto);
-    return res.status(HttpStatus.CREATED).json(result);
+  @Get(':id')
+  @ApiOperation({ summary: 'Get a person' })
+  findOne(@Param('id') id: string) {
+    return this.personService.findOne(+id);
   }
 
-  @Delete('/:id')
-  async deleteTodo(@Res() res, @Param('id', ParseIntPipe) id: number) {
-    const deletedItem = await this.service.deletePerson(id);
-    if (!deletedItem) {
-      throw new NotFoundException('Person does not exist!');
-    }
-    return res.status(HttpStatus.OK).json({
-      message: 'Person has been deleted!',
-      todo: deletedItem,
-    });
+  @Delete(':id')
+  @ApiOperation({ summary: 'Delete one person' })
+  remove(@Param('id') id: string) {
+    return this.personService.remove(+id);
+  }
+
+  @Patch(':id')
+  @ApiOperation({ summary: 'Update a person' })
+  update(@Param('id') id: string, @Body() updatePersonDto: UpdatePersonDto) {
+    return this.personService.update(+id, updatePersonDto);
   }
 }
