@@ -32,23 +32,23 @@ export class ApartmentOptionController {
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get an apartment option' })
+  @ApiOperation({ summary: 'Get apartment option' })
   findOne(@Param('id') id: string) {
     return this.apartmentOptionService.findOne(+id);
   }
 
+  @Delete(':id')
+  @ApiOperation({ summary: 'Delete apartment option' })
+  remove(@Param('id') id: string) {
+    return this.apartmentOptionService.remove(+id);
+  }
+
   @Patch(':id')
-  @ApiOperation({ summary: 'Update an apartment option' })
+  @ApiOperation({ summary: 'Update apartment option' })
   update(
     @Param('id') id: string,
     @Body() updateApartmentOptionDto: UpdateApartmentOptionDto,
   ) {
     return this.apartmentOptionService.update(+id, updateApartmentOptionDto);
-  }
-
-  @Delete(':id')
-  @ApiOperation({ summary: 'Delete an apartment option' })
-  remove(@Param('id') id: string) {
-    return this.apartmentOptionService.remove(+id);
   }
 }

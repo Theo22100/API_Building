@@ -15,7 +15,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-@Entity('Apartement')
+@Entity('apartment')
 export class ApartmentEntity {
   @PrimaryGeneratedColumn()
   id: number;

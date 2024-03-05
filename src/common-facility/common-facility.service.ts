@@ -40,7 +40,7 @@ export class CommonFacilityService extends BaseService<CommonFacilityEntity> {
       where: { id },
     });
     if (!facilitie) {
-      throw new NotFoundException('Facilitie not found');
+      throw new NotFoundException('Facility not found');
     }
     Object.assign(facilitie, updateCommonFacilityDto);
     return await this.repository.save(facilitie);

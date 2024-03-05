@@ -18,7 +18,7 @@ export class TenantController {
   constructor(private readonly tenantService: TenantService) {}
 
   @Post()
-  @ApiOperation({ summary: 'Create a tenant' })
+  @ApiOperation({ summary: 'Create tenant' })
   create(@Body() createTenantDto: CreateTenantDto) {
     return this.tenantService.create(createTenantDto);
   }
@@ -30,19 +30,19 @@ export class TenantController {
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get a tenant' })
+  @ApiOperation({ summary: 'Get tenant' })
   findOne(@Param('id') id: string) {
     return this.tenantService.findOne(+id);
   }
 
   @Delete(':id')
-  @ApiOperation({ summary: 'Delete a tenant' })
+  @ApiOperation({ summary: 'Delete tenant' })
   remove(@Param('id') id: string) {
     return this.tenantService.remove(+id);
   }
 
   @Patch(':id')
-  @ApiOperation({ summary: 'Update one tenant' })
+  @ApiOperation({ summary: 'Update tenant' })
   update(@Param('id') id: string, @Body() updateTenantDto: UpdateTenantDto) {
     return this.tenantService.update(+id, updateTenantDto);
   }

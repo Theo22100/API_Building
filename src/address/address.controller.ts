@@ -12,7 +12,7 @@ import { CreateAddressDto } from './dto/create-address.dto';
 import { UpdateAddressDto } from './dto/update-address.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
-@ApiTags('address')
+@ApiTags('Address')
 @Controller('address')
 export class AddressController {
   constructor(private readonly addressService: AddressService) {}
@@ -24,21 +24,21 @@ export class AddressController {
   }
 
   @Post()
-  @ApiOperation({ summary: 'Create an address' })
+  @ApiOperation({ summary: 'Create address' })
   create(@Body() createAddressDto: CreateAddressDto) {
     return this.addressService.create(createAddressDto);
+  }
+
+  @Get(':id')
+  @ApiOperation({ summary: 'Get address' })
+  findOne(@Param('id') id: string) {
+    return this.addressService.findOne(+id);
   }
 
   @Delete(':id')
   @ApiOperation({ summary: 'Delete address' })
   remove(@Param('id') id: string) {
     return this.addressService.deleteAddress(+id);
-  }
-
-  @Get(':id')
-  @ApiOperation({ summary: 'Get one address' })
-  findOne(@Param('id') id: string) {
-    return this.addressService.findOne(+id);
   }
 
   @Patch(':id')

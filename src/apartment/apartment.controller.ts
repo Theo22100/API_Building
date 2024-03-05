@@ -34,13 +34,13 @@ export class ApartmentController {
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get one apartment' })
+  @ApiOperation({ summary: 'Get apartment' })
   findOne(@Param('id') id: string) {
     return this.apartmentService.findOne(+id);
   }
 
   @Delete(':id')
-  @ApiOperation({ summary: 'Delete one apartment' })
+  @ApiOperation({ summary: 'Delete apartment' })
   remove(@Param('id') id: string) {
     return this.apartmentService.remove(+id);
   }
@@ -58,7 +58,7 @@ export class ApartmentController {
   }
 
   @Patch(':id')
-  @ApiOperation({ summary: 'Update an apartment' })
+  @ApiOperation({ summary: 'Update apartment' })
   update(
     @Param('id') id: string,
     @Body() updateApartmentDto: UpdateApartmentDto,

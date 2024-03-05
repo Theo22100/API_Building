@@ -18,35 +18,35 @@ export class ApartmentTypeController {
   constructor(private readonly apartmentTypeService: ApartmentTypeService) {}
 
   @Post()
-  @ApiOperation({ summary: 'Create an apartment option' })
+  @ApiOperation({ summary: 'Create apartment option' })
   create(@Body() createApartmentTypeDto: CreateApartmentTypeDto) {
     return this.apartmentTypeService.create(createApartmentTypeDto);
   }
 
   @Get()
-  @ApiOperation({ summary: 'Get all the apartment types' })
+  @ApiOperation({ summary: 'Get all apartment types' })
   findAll() {
     return this.apartmentTypeService.findAll();
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get an apartment type' })
+  @ApiOperation({ summary: 'Get apartment type' })
   findOne(@Param('id') id: string) {
     return this.apartmentTypeService.findOne(+id);
   }
 
+  @Delete(':id')
+  @ApiOperation({ summary: 'Delete apartment option' })
+  remove(@Param('id') id: string) {
+    return this.apartmentTypeService.remove(+id);
+  }
+
   @Patch(':id')
-  @ApiOperation({ summary: 'Update an apartment option' })
+  @ApiOperation({ summary: 'Update apartment option' })
   update(
     @Param('id') id: string,
     @Body() updateApartmentTypeDto: UpdateApartmentTypeDto,
   ) {
     return this.apartmentTypeService.update(+id, updateApartmentTypeDto);
-  }
-
-  @Delete(':id')
-  @ApiOperation({ summary: 'Delete an apartment option' })
-  remove(@Param('id') id: string) {
-    return this.apartmentTypeService.remove(+id);
   }
 }

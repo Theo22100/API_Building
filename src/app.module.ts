@@ -18,7 +18,7 @@ import { ApartmentOptionModule } from './apartment-option/apartment-option.modul
 import { ApartmentTypeModule } from './apartment-type/apartment-type.module';
 import { ApartmentModule } from './apartment/apartment.module';
 import { BuildingModule } from './building/building.module';
-import { BuildingFacilityModule } from './building_facility/building-facility.module';
+import { BuildingFacilityModule } from './building-facility/building-facility.module';
 import { CommonFacilityModule } from './common-facility/common-facility.module';
 import { OwnerModule } from './owner/owner.module';
 import { TenantModule } from './tenant/tenant.module';
@@ -31,7 +31,7 @@ import { TenantModule } from './tenant/tenant.module';
       port: 3306,
       username: 'building',
       password: 'Bu1ld1ng!',
-      database: 'api_building',
+      database: 'api_building2',
       entities: [
         AddressEntity,
         ApartmentEntity,
@@ -44,7 +44,7 @@ import { TenantModule } from './tenant/tenant.module';
         PersonEntity,
         TenantEntity,
       ],
-      synchronize: true,
+      synchronize: true, //After creation, set to false
     }),
     PersonModule,
     AddressModule,

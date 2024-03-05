@@ -1,7 +1,7 @@
 import { ApartmentEntity } from 'src/@entity/apartment.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('Apartement_type')
+@Entity('apartment_type')
 export class ApartmentTypeEntity {
   @PrimaryGeneratedColumn()
   id: number;

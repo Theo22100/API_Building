@@ -18,7 +18,7 @@ export class PersonController {
   constructor(private readonly personService: PersonService) {}
 
   @Post()
-  @ApiOperation({ summary: 'Create a person' })
+  @ApiOperation({ summary: 'Create person' })
   create(@Body() createPersonDto: CreatePersonDto) {
     return this.personService.create(createPersonDto);
   }
@@ -30,19 +30,19 @@ export class PersonController {
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get a person' })
+  @ApiOperation({ summary: 'Get person' })
   findOne(@Param('id') id: string) {
     return this.personService.findOne(+id);
   }
 
   @Delete(':id')
-  @ApiOperation({ summary: 'Delete one person' })
+  @ApiOperation({ summary: 'Delete person' })
   remove(@Param('id') id: string) {
     return this.personService.remove(+id);
   }
 
   @Patch(':id')
-  @ApiOperation({ summary: 'Update a person' })
+  @ApiOperation({ summary: 'Update person' })
   update(@Param('id') id: string, @Body() updatePersonDto: UpdatePersonDto) {
     return this.personService.update(+id, updatePersonDto);
   }
