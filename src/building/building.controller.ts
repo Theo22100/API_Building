@@ -44,19 +44,19 @@ export class BuildingController {
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get an building' })
+  @ApiOperation({ summary: 'Get building' })
   findOne(@Param('id') id: string) {
     return this.buildingService.findOne(+id);
   }
 
   @Delete(':id')
-  @ApiOperation({ summary: 'Delete an building' })
+  @ApiOperation({ summary: 'Delete building' })
   remove(@Param('id') id: string) {
     return this.buildingService.remove(+id);
   }
 
   @Patch(':id')
-  @ApiOperation({ summary: 'Update an building' })
+  @ApiOperation({ summary: 'Update building' })
   update(
     @Param('id') id: string,
     @Body() updateBuildingDto: UpdateBuildingDto,
@@ -66,27 +66,27 @@ export class BuildingController {
 
   @Get('/pourcentage/:id')
   @ApiOperation({
-    summary: 'Get pourcentage of occupy apartment in the building',
+    summary: 'Get pourcentage of occupy apartment in building',
   })
   occupationPourcentage(@Param('id') id: string) {
     return this.buildingService.occupationPourcentage(+id);
   }
 
   @Get('/number/:id')
-  @ApiOperation({ summary: 'Get number of apartments in the building' })
+  @ApiOperation({ summary: 'Get number of apartments in building' })
   numberOfApart(@Param('id') id: string) {
     return this.buildingService.numberOfApart(+id);
   }
 
   @Get('/tenants/:id')
-  @ApiOperation({ summary: 'Get number of tenants in the building' })
+  @ApiOperation({ summary: 'Get number of tenants in building' })
   nbTenants(@Param('id') id: string) {
     return this.buildingService.nbTenant(+id);
   }
 
   @Get('/under/:id')
   @ApiOperation({
-    summary: 'Get number of apartment underoccupy in the building',
+    summary: 'Get number of apartment underoccupy in building',
   })
   underOccupy(@Param('id') id: string) {
     return this.buildingService.underOccupy(+id);
@@ -94,7 +94,7 @@ export class BuildingController {
 
   @Get('/over/:id')
   @ApiOperation({
-    summary: 'Get number of apartment overoccupy in the building',
+    summary: 'Get number of apartment overoccupy in building',
   })
   overOccupy(@Param('id') id: string) {
     return this.buildingService.overOccupy(+id);

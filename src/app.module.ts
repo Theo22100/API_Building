@@ -31,7 +31,7 @@ import { TenantModule } from './tenant/tenant.module';
       port: 3306,
       username: 'building',
       password: 'Bu1ld1ng!',
-      database: 'api_building',
+      database: 'api_building2',
       entities: [
         AddressEntity,
         ApartmentEntity,
@@ -44,7 +44,7 @@ import { TenantModule } from './tenant/tenant.module';
         PersonEntity,
         TenantEntity,
       ],
-      synchronize: true,
+      synchronize: true, //After creation, set to false
     }),
     PersonModule,
     AddressModule,

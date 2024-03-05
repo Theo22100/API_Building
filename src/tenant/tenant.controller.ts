@@ -42,7 +42,7 @@ export class TenantController {
   }
 
   @Patch(':id')
-  @ApiOperation({ summary: 'Update one tenant' })
+  @ApiOperation({ summary: 'Update a tenant' })
   update(@Param('id') id: string, @Body() updateTenantDto: UpdateTenantDto) {
     return this.tenantService.update(+id, updateTenantDto);
   }

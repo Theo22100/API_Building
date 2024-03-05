@@ -20,7 +20,7 @@ export class BuildingFacilityController {
   ) {}
 
   @Post()
-  @ApiOperation({ summary: 'Create info for the facility of one building' })
+  @ApiOperation({ summary: 'Create info for facility of building' })
   create(@Body() createBuildingFacilityDto: CreateBuildingFacilityDto) {
     return this.buildingFacilityService.createwithDto(
       createBuildingFacilityDto,
@@ -28,19 +28,19 @@ export class BuildingFacilityController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'Get all facilities from the buildings ' })
+  @ApiOperation({ summary: 'Get all facilities from buildings' })
   findAll() {
     return this.buildingFacilityService.findAll();
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get one facility of a building' })
+  @ApiOperation({ summary: 'Get facility of a building' })
   findOne(@Param('id') id: string) {
     return this.buildingFacilityService.findOne(+id);
   }
 
   @Patch(':id')
-  @ApiOperation({ summary: 'Update one facility of a building' })
+  @ApiOperation({ summary: 'Update facility of a building' })
   update(
     @Param('id') id: string,
     @Body() updateBuildingFacilityDto: UpdateBuildingFacilityDto,
@@ -49,7 +49,7 @@ export class BuildingFacilityController {
   }
 
   @Delete(':id')
-  @ApiOperation({ summary: 'Delete one facility of a building' })
+  @ApiOperation({ summary: 'Delete facility of a building' })
   remove(@Param('id') id: string) {
     return this.buildingFacilityService.remove(+id);
   }

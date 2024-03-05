@@ -36,7 +36,7 @@ export class AddressController {
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get one address' })
+  @ApiOperation({ summary: 'Get an address' })
   findOne(@Param('id') id: string) {
     return this.addressService.findOne(+id);
   }

@@ -36,7 +36,7 @@ export class PersonController {
   }
 
   @Delete(':id')
-  @ApiOperation({ summary: 'Delete one person' })
+  @ApiOperation({ summary: 'Delete a person' })
   remove(@Param('id') id: string) {
     return this.personService.remove(+id);
   }

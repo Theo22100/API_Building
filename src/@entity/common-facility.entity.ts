@@ -1,7 +1,7 @@
 import { BuildingEntity } from 'src/@entity/building.entity';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from 'typeorm';
 
-@Entity('CommonFacility')
+@Entity('common_facility')
 export class CommonFacilityEntity {
   @PrimaryGeneratedColumn()
   id: number;
