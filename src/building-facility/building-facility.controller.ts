@@ -39,18 +39,18 @@ export class BuildingFacilityController {
     return this.buildingFacilityService.findOne(+id);
   }
 
+  @Delete(':id')
+  @ApiOperation({ summary: 'Delete facility of building' })
+  remove(@Param('id') id: string) {
+    return this.buildingFacilityService.remove(+id);
+  }
+
   @Patch(':id')
-  @ApiOperation({ summary: 'Update facility of a building' })
+  @ApiOperation({ summary: 'Update facility of building' })
   update(
     @Param('id') id: string,
     @Body() updateBuildingFacilityDto: UpdateBuildingFacilityDto,
   ) {
     return this.buildingFacilityService.update(+id, updateBuildingFacilityDto);
-  }
-
-  @Delete(':id')
-  @ApiOperation({ summary: 'Delete facility of a building' })
-  remove(@Param('id') id: string) {
-    return this.buildingFacilityService.remove(+id);
   }
 }

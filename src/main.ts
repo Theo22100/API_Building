@@ -8,7 +8,6 @@ async function bootstrap() {
     .setTitle('Building manager') // Set the title of Swagger documentation
     .setDescription('Builder API') // Set the API description in Swagger documentation
     .setVersion('1.0') // Set the API version in Swagger documentation
-    .addTag('building') // Add a "building" tag to Swagger documentation
     .build(); // Finalize Swagger configuration
 
   app.enableCors(); // Enable CORS support for the application

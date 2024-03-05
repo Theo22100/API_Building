@@ -18,7 +18,7 @@ export class OwnerController {
   constructor(private readonly ownerService: OwnerService) {}
 
   @Post()
-  @ApiOperation({ summary: 'Create one owner' })
+  @ApiOperation({ summary: 'Create owner' })
   create(@Body() createOwnerDto: CreateOwnerDto) {
     return this.ownerService.create(createOwnerDto);
   }
@@ -30,20 +30,20 @@ export class OwnerController {
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get an owner' })
+  @ApiOperation({ summary: 'Get owner' })
   findOne(@Param('id') id: string) {
     return this.ownerService.findOne(+id);
   }
 
-  @Patch(':id')
-  @ApiOperation({ summary: 'Update an owner' })
-  update(@Param('id') id: string, @Body() updateOwnerDto: UpdateOwnerDto) {
-    return this.ownerService.update(+id, updateOwnerDto);
-  }
-
   @Delete(':id')
-  @ApiOperation({ summary: 'Delete an owner' })
+  @ApiOperation({ summary: 'Delete owner' })
   remove(@Param('id') id: string) {
     return this.ownerService.remove(+id);
+  }
+
+  @Patch(':id')
+  @ApiOperation({ summary: 'Update owner' })
+  update(@Param('id') id: string, @Body() updateOwnerDto: UpdateOwnerDto) {
+    return this.ownerService.update(+id, updateOwnerDto);
   }
 }

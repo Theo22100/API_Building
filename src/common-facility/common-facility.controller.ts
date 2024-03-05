@@ -18,7 +18,7 @@ export class CommonFacilityController {
   constructor(private readonly commonFacilityService: CommonFacilityService) {}
 
   @Post()
-  @ApiOperation({ summary: 'Create a facility' })
+  @ApiOperation({ summary: 'Create facility' })
   create(@Body() createCommonFacilityDto: CreateCommonFacilityDto) {
     return this.commonFacilityService.create(createCommonFacilityDto);
   }
@@ -30,23 +30,23 @@ export class CommonFacilityController {
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get a facility' })
+  @ApiOperation({ summary: 'Get facility' })
   findOne(@Param('id') id: string) {
     return this.commonFacilityService.findOne(+id);
   }
 
+  @Delete(':id')
+  @ApiOperation({ summary: 'Delete facility' })
+  remove(@Param('id') id: string) {
+    return this.commonFacilityService.remove(+id);
+  }
+
   @Patch(':id')
-  @ApiOperation({ summary: 'Update a facility' })
+  @ApiOperation({ summary: 'Update facility' })
   update(
     @Param('id') id: string,
     @Body() updateCommonFacilityDto: UpdateCommonFacilityDto,
   ) {
     return this.commonFacilityService.update(+id, updateCommonFacilityDto);
-  }
-
-  @Delete(':id')
-  @ApiOperation({ summary: 'Delete a facility' })
-  remove(@Param('id') id: string) {
-    return this.commonFacilityService.remove(+id);
   }
 }

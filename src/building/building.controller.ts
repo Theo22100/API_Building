@@ -66,7 +66,7 @@ export class BuildingController {
 
   @Get('/pourcentage/:id')
   @ApiOperation({
-    summary: 'Get pourcentage of occupy apartment in building',
+    summary: 'Get % of occupy apartment in building',
   })
   occupationPourcentage(@Param('id') id: string) {
     return this.buildingService.occupationPourcentage(+id);
