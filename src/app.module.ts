@@ -44,7 +44,7 @@ import { TenantModule } from './tenant/tenant.module';
         PersonEntity,
         TenantEntity,
       ],
-      synchronize: false, //After creation, set to false
+      synchronize: true, //After creation, set to false
     }),
     PersonModule,
     AddressModule,
