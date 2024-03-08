@@ -15,6 +15,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config); // Create a Swagger document from configuration and application
   SwaggerModule.setup('api', app, document); // Configure Swagger to serve documentation at /api URL
 
-  await app.listen(3000);
+  await app.listen(3110);
 }
 bootstrap();
